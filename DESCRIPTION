@@ -1,12 +1,14 @@
 Package: thermgRad
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Tools for germination analysis on thermal gradient plate
+Version: 0.0.1
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Pablo", "Gomez Barreiro", , "pablogomezbr@hotmail.es", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-3140-3326"))
+Description: It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
