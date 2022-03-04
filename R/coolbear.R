@@ -14,7 +14,6 @@
 #'
 #'
 coolbear <- function(day,cumulative,n) {
-  stopifnot(length(day)!=length(cumulative),"Error: day & cumulative vectors have different lenghts!")
   if (max(cumulative)<n/2){ #If germination is under 50%, is not possible to calculate T50
     t50<-"NA"
     return(t50)
