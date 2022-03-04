@@ -1,13 +1,13 @@
-#' Obtain T50 from thermal plate dataframe
+#' Obtain T50 and Germination Rate from thermal plate data frame
 #'
-#' Chopchop dice and slice an excel spreadsheet containing cumulative germination data from every Petri dish and calculate T50 for each row. See details to format the data correctly. The last column must be the total number of viable seeds of each petri dish (germinated + fresh & mouldy after cut test). It does not have to be (necessarily) a 13 by 13 Petri dish grid
+#' Chopchop dice and slice an excel spreadsheet containing cumulative germination data from every Petri dish and calculate T50 and Germination rate for each petri dish (a row). See details to format the data correctly. The last column must be the total number of viable seeds of each petri dish (germinated + fresh & mouldy after cut test). It does not have to be (necessarily) a 13 by 13 Petri dish grid
 #'
 #' @param x A data.frame, probably imported from an excel spreadsheet. See details for formatting
 #'
-#' @return A vector with thermal plate T50 values
+#' @return A data frame with thermal plate T50 and GR values
 #' @export
 #' @details
-#' Input for this function is a dataframe with this format. Please note this table has a header and is relevant for the function for "Days" to be the header and not a row. This is because thermal plate germination data is probably recorded in a excel spreadsheet with this format
+#' Input for this function is a data frame with this format. Please note this table has a header and is relevant for the function for "Days" to be the header and not a row. This is because thermal plate germination data is probably recorded in a excel spreadsheet with this format
 #'
 #' | Day       | 1           | 3           | 6           | 8           | 12          | 15           | 17           | 22          | Total  |
 #' | ------------- |:-------------:|:-------------:|:-------------:| :-------------:| :-------------:| :-------------:| :-------------:| :-------------:|  -----:|
@@ -30,9 +30,11 @@ chopchop<-function(x){
   germ_list<-(x)%>%select(-1,-ncol(x))%>%as.matrix()
   n<-(x)%>%select(ncol(x))
   t50<-vector()
+  GR<-vector()
   for (i in 1:nrow(germ_list)) {
     new_value<-coolbear(days,as.vector(germ_list[i,]),25)
     t50 <- c(t50, new_value)
+    GR<-c(GR,1/new_value)
   }
-  t50
+  data.frame(t50,GR)
 }

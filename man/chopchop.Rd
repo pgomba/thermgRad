@@ -2,7 +2,7 @@
 % Please edit documentation in R/chopchop.R
 \name{chopchop}
 \alias{chopchop}
-\title{Obtain T50 from thermal plate dataframe}
+\title{Obtain T50 and Germination Rate from thermal plate data frame}
 \usage{
 chopchop(x)
 }
@@ -10,13 +10,13 @@ chopchop(x)
 \item{x}{A data.frame, probably imported from an excel spreadsheet. See details for formatting}
 }
 \value{
-A vector with thermal plate T50 values
+A data frame with thermal plate T50 and GR values
 }
 \description{
-Chopchop dice and slice an excel spreadsheet containing cumulative germination data from every Petri dish and calculate T50 for each row. See details to format the data correctly. The last column must be the total number of viable seeds of each petri dish (germinated + fresh & mouldy after cut test). It does not have to be (necessarily) a 13 by 13 Petri dish grid
+Chopchop dice and slice an excel spreadsheet containing cumulative germination data from every Petri dish and calculate T50 and Germination rate for each petri dish (a row). See details to format the data correctly. The last column must be the total number of viable seeds of each petri dish (germinated + fresh & mouldy after cut test). It does not have to be (necessarily) a 13 by 13 Petri dish grid
 }
 \details{
-Input for this function is a dataframe with this format. Please note this table has a header and is relevant for the function for "Days" to be the header and not a row. This is because thermal plate germination data is probably recorded in a excel spreadsheet with this format\tabular{lccccccccr}{
+Input for this function is a data frame with this format. Please note this table has a header and is relevant for the function for "Days" to be the header and not a row. This is because thermal plate germination data is probably recorded in a excel spreadsheet with this format\tabular{lccccccccr}{
    Day \tab 1 \tab 3 \tab 6 \tab 8 \tab 12 \tab 15 \tab 17 \tab 22 \tab Total \cr
    A1 \tab 0 \tab 0 \tab 0 \tab 6 \tab 10 \tab 12 \tab 17 \tab 17 \tab 21 \cr
    A2 \tab 0 \tab 0 \tab 0 \tab 3 \tab 10 \tab 10 \tab 10 \tab 11 \tab 19 \cr
