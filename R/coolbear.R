@@ -1,6 +1,6 @@
 #' Obtain T50 values
 #'
-#' Obtain T50 values using Coolbear et al. (1984) formula modified by Farooq et al.(2005). Vector containing scoring days must have same lenght than vector containing cumulative germination data
+#' Obtain T50 values using Coolbear et al. (1984) formula modified by Farooq et al.(2005). Vector containing scoring days must have same length than vector containing cumulative germination data
 #'
 #' @param day A vector containing scoring days
 #' @param cumulative A vector containing the cumulative germination for each day
