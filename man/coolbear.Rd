@@ -17,7 +17,7 @@ coolbear(day, cumulative, n)
 t50 value in days
 }
 \description{
-Obtain T50 values using Coolbear et al. (1984) formula modified by Farooq et al.(2005). Vector containing scoring days must have same lenght than vector containing cumulative germination data
+Obtain T50 values using Coolbear et al. (1984) formula modified by Farooq et al.(2005). Vector containing scoring days must have same length than vector containing cumulative germination data
 }
 \examples{
 coolbear(seq(1,10,1),c(0,0,0,0,0,6,12,15,18,20),20)
