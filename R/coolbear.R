@@ -15,7 +15,7 @@
 #'
 coolbear <- function(day,cumulative,n) {
   if (max(cumulative)<n/2){ #If germination is under 50%, is not possible to calculate T50
-    t50<-"NA"
+    t50<-NA
     return(t50)
   }
   if (max(cumulative)==n/2){ #If maximum germination is 50% of viable seeds, T50 is time to reach maximum germination
