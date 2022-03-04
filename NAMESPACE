@@ -2,3 +2,7 @@
 
 export(chopchop)
 export(coolbear)
+importFrom(dplyr,select)
+importFrom(magrittr,"%>%")
+importFrom(utils,head)
+importFrom(utils,tail)

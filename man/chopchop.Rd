@@ -7,7 +7,7 @@
 chopchop(x)
 }
 \arguments{
-\item{x}{}
+\item{x}{A data.frame, probably imported from an excel spreadsheet. See details for formatting}
 }
 \value{
 A vector with thermal plate T50 values
@@ -27,8 +27,4 @@ Input for this function is a dataframe with this format. Please note this table 
    M12 \tab 0 \tab 0 \tab 0 \tab 1 \tab 1 \tab 5 \tab 8 \tab 20 \tab 20 \cr
    M13 \tab 0 \tab 0 \tab 0 \tab 1 \tab 5 \tab 10 \tab 10 \tab 15 \tab 21 \cr
 }
-}
-\examples{
-Being the dataframe from the Details section (x). Do:
-chopchop(x)
 }

@@ -2,11 +2,10 @@
 #'
 #' Chopchop dice and slice an excel spreadsheet containing cumulative germination data from every Petri dish and calculate T50 for each row. See details to format the data correctly. The last column must be the total number of viable seeds of each petri dish (germinated + fresh & mouldy after cut test). It does not have to be (necessarily) a 13 by 13 Petri dish grid
 #'
-#' @param x
+#' @param x A data.frame, probably imported from an excel spreadsheet. See details for formatting
 #'
 #' @return A vector with thermal plate T50 values
 #' @export
-#'
 #' @details
 #' Input for this function is a dataframe with this format. Please note this table has a header and is relevant for the function for "Days" to be the header and not a row. This is because thermal plate germination data is probably recorded in a excel spreadsheet with this format
 #'
@@ -21,9 +20,10 @@
 #' | M12      | 0 | 0 | 0 | 1 | 1 | 5 | 8 | 20 | 20 |
 #' | M13      | 0 | 0 | 0 | 1 | 5 | 10 | 10 | 15 | 21 |
 #' @md
-#' @examples
-#' If x is a data.frame formatted as the one from details, just do:
-#' chopchop(x)
+#' @importFrom magrittr %>%
+#' @importFrom dplyr select
+#' @importFrom utils head
+#' @importFrom utils tail
 
 chopchop<-function(x){
   days<-colnames(x)%>%head(-1)%>%tail(-1)%>%as.numeric()
