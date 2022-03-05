@@ -1,6 +1,6 @@
 #' Generate temperature gradient grid
 #'
-#' Taking into account thermal gradient plate corner temperatures this function return a data frame with the temperatures of each petri dish. Using the "precise" method returns a more accurate estimate of temperatures accross the thermal plate, while with the adjust parameter is possible to estimate the temperature at the center of each Petri dish
+#' Taking into account thermal gradient plate corner temperatures this function return a data frame with the temperatures of each petri dish. Using the "precise" method returns a more accurate estimate of temperatures across the thermal plate, while with the adjust parameter is possible to estimate the temperature at the center of each Petri dish
 #'
 #' @param dayBL Average diurnal temperature at the bottom left side of the thermal gradient plate
 #' @param dayBR Average diurnal temperature at the bottom left side of the thermal gradient plate
@@ -14,7 +14,7 @@
 #' @param method Leave blank to use average corner temperature values or use "precise" to create a temperature gradient based in individual corner temperatures
 #' @param adjust tbd, but will be used to center temperature into Petri dish
 #'
-#' @return A dataframe with day and night temperatures for each thermal gradient plate
+#' @return A dataframe with day and night temperatures for each Petri dish
 #' @export
 #'
 #' @examples
