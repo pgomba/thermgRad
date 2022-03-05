@@ -2,6 +2,7 @@
 
 export(chopchop)
 export(coolbear)
+export(tempgrad)
 importFrom(dplyr,select)
 importFrom(magrittr,"%>%")
 importFrom(utils,head)
