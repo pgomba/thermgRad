@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot_tempgrad.R
 \name{plot_tempgrad}
 \alias{plot_tempgrad}
-\title{Generate temperature gradient grid}
+\title{Plots thermal gradient temperature for each Petri dish}
 \usage{
 plot_tempgrad(
   dayBL = "Diurnal bottom left temperature",
@@ -42,12 +42,12 @@ plot_tempgrad(
 \item{adjust}{tbd, but will be used to center temperature into Petri dish}
 }
 \value{
-A dataframe with day and night temperatures for each thermal gradient plate
+A graph with average Petri dish temperature
 }
 \description{
-Taking into account thermal gradient plate corner temperatures this function return a data frame with the temperatures of each petri dish. Using the "precise" method returns a more accurate estimate of temperatures accross the thermal plate, while with the adjust parameter is possible to estimate the temperature at the center of each Petri dish
+Taking into account thermal gradient plate corner temperatures this function return a graph with the temperatures of each Petri dish. Using the "precise" method returns a more accurate estimated grid of temperatures across the thermal plate, while with the adjust parameter is possible to estimate the temperature at the center of each Petri dish
 }
 \examples{
-tempgrad(dayBL=0,dayBR=0,dayTL=40,dayTR=40,nightBL=0,nightBR=40,nightTL=0,nightTR=40,petri=13)
+plot_tempgrad(dayBL=0,dayBR=0,dayTL=40,dayTR=40,nightBL=0,nightBR=40,nightTL=0,nightTR=40,petri=13)
 
 }

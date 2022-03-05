@@ -69,4 +69,4 @@ plot_tempgrad<-function(dayBL="Diurnal bottom left temperature",
           axis.title = element_text(size=20) )+
     theme(legend.position = "right")
   }
-}
+
