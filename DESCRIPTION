@@ -17,5 +17,6 @@ Config/testthat/edition: 3
 Imports: 
     utils,
     dplyr,
-    magrittr
+    magrittr,
+    ggplot2
 VignetteBuilder: knitr
