@@ -50,8 +50,8 @@ tempgrad<-function(dayBL="Diurnal bottom left temperature",
     data.frame(PD_ID=grid,day_temp=v_day,night_temp=v_night)
   }
   else{
-  day_temp<-rep(seq((dayBL+dayBR)/2,(dayTL+dayTR)/2,length.out=petri),each=petri)
-  night_temp<-rep(seq((nightBL+nightTL)/2,(nightBR+nightTR)/2,length.out=petri),times=petri)
+  day_temp<-rep(seq((dayTL+dayTR)/2,(dayBL+dayBR)/2,length.out=petri),time=petri)
+  night_temp<-rep(seq((nightBL+nightTL)/2,(nightBR+nightTR)/2,length.out=petri),each=petri)
   data.frame(PD_ID=grid,day_temp=day_temp,night_temp=night_temp)
   }
 }
