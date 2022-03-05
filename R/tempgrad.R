@@ -32,12 +32,26 @@ tempgrad<-function(dayBL="Diurnal bottom left temperature",
                    method="tbd",
                    adjust="tbd"
 ){
+  let<-rep(LETTERS[seq(from=1,to=petri)],each=petri) #vector with as many letters as columns/rows
+  grid<-paste0(let,1:13) #vector with al Petri dish labels
   if (method=="precise"){
-    print("Work in progress. Try later!")
+    day_bot_row<-seq(dayBL,dayBR,length.out=petri)
+    day_top_row<-seq(dayTL,dayTR,length.out=petri)
+    night_top_row<-seq(nightTL,nightTR,length.out=petri)
+    night_bot_row<-seq(nightBL,nightBR,length.out=petri)
+    v_day<-vector()
+    v_night<-vector()
+    for (i in 1:petri) {
+      day_temp<-seq(day_top_row[i],day_bot_row[i],length.out=petri)
+      night_temp<-seq(night_top_row[i],night_bot_row[i],length.out=petri)
+      v_day <- c(v_day, day_temp)
+      v_night<-c(v_night,night_temp)
+    }
+    data.frame(PD_ID=grid,day_temp=v_day,night_temp=v_night)
   }
   else{
   day_temp<-rep(seq((dayBL+dayBR)/2,(dayTL+dayTR)/2,length.out=petri),each=petri)
   night_temp<-rep(seq((nightBL+nightTL)/2,(nightBR+nightTR)/2,length.out=petri),times=petri)
-  data.frame(day_temp,night_temp)
+  data.frame(PD_ID=grid,day_temp=day_temp,night_temp=night_temp)
   }
 }
