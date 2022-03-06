@@ -33,7 +33,7 @@ tempgrad<-function(dayBL="Diurnal bottom left temperature",
                    adjust="tbd"
 ){
   let<-rep(LETTERS[seq(from=1,to=petri)],each=petri) #vector with as many letters as columns/rows
-  grid<-paste0(let,1:13) #vector with al Petri dish labels
+  grid<-paste0(let,1:petri) #vector with al Petri dish labels
   if (method=="precise"){
     day_bot_row<-seq(dayBL,dayBR,length.out=petri)
     day_top_row<-seq(dayTL,dayTR,length.out=petri)
