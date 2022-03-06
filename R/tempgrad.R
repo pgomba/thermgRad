@@ -47,11 +47,11 @@ tempgrad<-function(dayBL="Diurnal bottom left temperature",
       v_day <- c(v_day, day_temp)
       v_night<-c(v_night,night_temp)
     }
-    data.frame(PD_ID=grid,day_temp=v_day,night_temp=v_night,average=(v_day+v_night)/2,fluctuation=round(abs(v_day-v_night),2))
+    data.frame(PD_ID=grid,day_temp=v_day,night_temp=v_night,average=(v_day+v_night)/2,fluc=round(v_day-v_night,2),abs_fluc=round(abs(v_day-v_night),2))
   }
   else{
   day_temp<-rep(seq((dayTL+dayTR)/2,(dayBL+dayBR)/2,length.out=petri),time=petri)
   night_temp<-rep(seq((nightBL+nightTL)/2,(nightBR+nightTR)/2,length.out=petri),each=petri)
-  data.frame(PD_ID=grid,day_temp=day_temp,night_temp=night_temp,average=(day_temp+night_temp)/2,fluctuation=round(abs(day_temp-night_temp),2))
+  data.frame(PD_ID=grid,day_temp=day_temp,night_temp=night_temp,average=(day_temp+night_temp)/2,fluc=round(v_day-v_night,2),abs_fluc=round(abs(v_day-v_night),2))
   }
 }
