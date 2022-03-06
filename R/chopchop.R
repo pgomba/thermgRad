@@ -1,6 +1,6 @@
-#' Obtain T50 and Germination Rate from thermal plate data frame
+#' Obtain T50, Germination Rate for each Petri dish in the thermal gradient
 #'
-#' Chopchop dice and slice an excel spreadsheet containing cumulative germination data from every Petri dish and calculate T50 and Germination rate for each petri dish (a row). See details to format the data correctly. The last column must be the total number of viable seeds of each petri dish (germinated + fresh & mouldy after cut test). It does not have to be (necessarily) a 13 by 13 Petri dish grid
+#' This function transform an excel spreadshit cumulative germination data from every Petri dish into a grid containing petri dish label, T50 and Germination rate. See details to format the input data correctly. The last column must be the total number of viable seeds of each petri dish (germinated + fresh & mouldy after cut test). It does not have to be (necessarily) a 13 by 13 Petri dish grid
 #'
 #' @param x A data.frame, probably imported from an excel spreadsheet. See details for formatting
 #'
@@ -26,6 +26,8 @@
 #' @importFrom utils tail
 
 chopchop<-function(x){
+  let<-rep(LETTERS[seq(from=1,to=petri)],each=petri) #vector with as many letters as columns/rows
+  grid<-paste0(let,1:petri)
   days<-colnames(x)%>%head(-1)%>%tail(-1)%>%as.numeric()
   germ_list<-(x)%>%select(-1,-ncol(x))%>%as.matrix()
   n<-(x)%>%select(ncol(x))
@@ -36,5 +38,5 @@ chopchop<-function(x){
     t50 <- c(t50, new_value)
     GR<-c(GR,1/new_value)
   }
-  data.frame(t50,GR)
+  data.frame(grid,t50,GR)
 }
