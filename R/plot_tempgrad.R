@@ -13,8 +13,7 @@
 #' plot_tempgrad(x,toplot="average")
 #' plot_tempgrad(x,toplot="fluctuation")
 #' x%>%plot_tempgrad(toplot="average")
-#'
-#'
+#'#'
 #' @importFrom ggplot2 ggplot aes geom_bar geom_segment geom_point theme_dark geom_text scale_fill_distiller labs theme element_text element_blank
 #' @importFrom magrittr %>%
 plot_tempgrad<-function(x="output dataframe from tempgrad function",
@@ -24,18 +23,20 @@ plot_tempgrad<-function(x="output dataframe from tempgrad function",
   if (toplot=="average"){
     z<-(day_temp+night_temp)/2
     label<-round(z,1)
+    tit<-"Average temperature"
   }
   if (toplot=="fluctuation"){
     z<-round(abs(day_temp-night_temp),1)
     label<-round(z,1)
+    tit<-"Temperature fluctuation"
   }
-  ggplot2::ggplot(x,aes(day_temp,night_temp,z=z,label=label))+
+  ggplot2::ggplot(x,aes(night_temp,day_temp,z=z,label=label))+
     geom_segment(x=0,xend=40,y=0,yend=40,size=2,linetype="dashed")+
     geom_point(aes(fill=z),size=12,shape=21,stroke=1.1)+
     theme_dark()+
     geom_text(size=4)+
     scale_fill_distiller(palette = "Spectral", direction = -1)+
-    labs(title="Average Petri dish temperature",x="Day Temperature",y="Night Temperature")+
+    labs(title=tit,x="Night Temperature",y="Day Temperature")+
     theme(plot.title =element_text(size=16),
           legend.title = element_blank(),
           axis.text.x = element_text(size=20),

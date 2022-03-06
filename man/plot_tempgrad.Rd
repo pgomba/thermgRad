@@ -25,6 +25,5 @@ x<-tempgrad(dayBL=0,dayBR=0,dayTL=40,dayTR=40,nightBL=0,nightBR=40,nightTL=0,nig
 plot_tempgrad(x,toplot="average")
 plot_tempgrad(x,toplot="fluctuation")
 x\%>\%plot_tempgrad(toplot="average")
-
-
+#'
 }
