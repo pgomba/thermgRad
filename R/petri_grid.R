@@ -22,12 +22,12 @@
 #' @md
 #' @importFrom magrittr %>%
 #' @importFrom dplyr select
+#' @importFrom dplyr mutate
 #' @importFrom utils head
 #' @importFrom utils tail
 
-chopchop<-function(x){
-  let<-rep(LETTERS[seq(from=1,to=petri)],each=petri) #vector with as many letters as columns/rows
-  grid<-paste0(let,1:petri)
+petri_grid<-function(x){
+  germination<-(x)%>%select(ncol(x)-1,ncol(x))%>%mutate(germ=(.[[1]]/.[[2]])*100)%>%select(germ)
   days<-colnames(x)%>%head(-1)%>%tail(-1)%>%as.numeric()
   germ_list<-(x)%>%select(-1,-ncol(x))%>%as.matrix()
   n<-(x)%>%select(ncol(x))
@@ -38,5 +38,7 @@ chopchop<-function(x){
     t50 <- c(t50, new_value)
     GR<-c(GR,1/new_value)
   }
-  data.frame(grid,t50,GR)
+  let<-rep(LETTERS[seq(from=1,to=sqrt(nrow(x)))],each=sqrt(nrow(x))) #vector with as many letters as columns/rows
+  grid<-paste0(let,1:sqrt(nrow(x)))
+  data.frame(grid,germination,t50,GR)
 }
