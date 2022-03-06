@@ -34,7 +34,7 @@ petri_grid<-function(x){
   t50<-vector()
   GR<-vector()
   for (i in 1:nrow(germ_list)) {
-    new_value<-coolbear(days,as.vector(germ_list[i,]),25)
+    new_value<-coolbear(days,as.vector(germ_list[i,]),n[i,])
     t50 <- c(t50, new_value)
     GR<-c(GR,1/new_value)
   }
