@@ -42,10 +42,10 @@ tempgrad(
 \item{adjust}{tbd, but will be used to center temperature into Petri dish}
 }
 \value{
-A dataframe with day and night temperatures for each Petri dish
+A data frame with day and night temperatures, average temperature and temperature fluctuation for each Petri dish
 }
 \description{
-Taking into account thermal gradient plate corner temperatures this function return a data frame with the temperatures of each petri dish. Using the "precise" method returns a more accurate estimate of temperatures across the thermal plate, while with the adjust parameter is possible to estimate the temperature at the center of each Petri dish
+Taking into account thermal gradient plate corner temperatures this function return a data frame with day and night temperatures for each petri dish, their average temperature and the temperature fluctuation. Using the "precise" method returns a more accurate estimate of temperatures across the thermal plate, while with the adjust parameter is possible to estimate the temperature at the center of each Petri dish
 }
 \examples{
 tempgrad(dayBL=0,dayBR=0,dayTL=40,dayTR=40,nightBL=0,nightBR=40,nightTL=0,nightTR=40,petri=13)
