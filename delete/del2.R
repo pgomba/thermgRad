@@ -2,6 +2,7 @@ library(readxl)
 temp2 <- read_excel("C:/Users/Pablo/Desktop/rose/temp2.xlsx")
 View(temp2)
 
+dput(temp2)
 
 a<-petri_grid(temp2)
 plot_tempgrad(b,toplot = "average")
