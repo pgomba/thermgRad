@@ -22,3 +22,4 @@ rep(seq((dayTL+dayTR)/2,(dayBL+dayBR)/2,length.out=petri),time=petri)
 plot_tempgrad(a,toplot = "average")
 
 use_pipe()
+use_github_actions()
