@@ -19,5 +19,6 @@ Imports:
     dplyr,
     magrittr,
     ggplot2,
-    readr
+    readr,
+    tidyr
 VignetteBuilder: knitr
