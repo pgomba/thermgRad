@@ -37,3 +37,14 @@ View(temp2)
 View(temp2)
 
 dput(temp2)
+
+cardinal(a,1,4)
+
+a<-x
+library(tidyr)
+library(thermgRad)
+library(dplyr)
+library(tidyverse)
+library(devtools)
+install()
+

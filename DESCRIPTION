@@ -20,5 +20,7 @@ Imports:
     magrittr,
     ggplot2,
     readr,
-    tidyr
+    tidyr,
+    tidyverse,
+    methods
 VignetteBuilder: knitr

@@ -1,11 +1,18 @@
-#' Title
+#' Find and plot cardinal temperatures
 #'
-#' @param data
+#' Find and plot cardinal temperatures after selecting a temperature fluctuation threshold
 #'
-#' @return
+#' @param data A template dataframe
+#' @param fs Lower fluctuation threshold
+#' @param fe Higher fluctuation thresholds
+#'
+#' @return A plot with cardinal temperatures
 #' @export
 #' @importFrom dplyr left_join filter between
-#' @importFrom ggplot2
+#' @importFrom ggplot2 geom_point stat_function scale_y_continuous
+#' @importFrom tidyr drop_na
+#' @importFrom methods show
+#' @importFrom stats lm
 #' @examples
 cardinal<-function(data="template dataframe",
                    fs= "lower thershold of fluctuation values",
@@ -15,11 +22,6 @@ cardinal<-function(data="template dataframe",
   grid_temp<-left_join(grid,temp,by="PD_ID")%>%
     filter(between(fluc,fs,fe))%>%
     drop_na()
-
-  #maxGR<-which(grid_temp$GR==max(grid_temp$GR))
-  #put_sub<-replace(grid_temp$GR,1:maxGR-1,"sub")
-  #put_supra<-replace(put_sub,(maxGR+1):length(put_sub),"supra")
-  #grid_temp$cardinal_labels<-replace(put_supra,maxGR,"both")
 
   print(grid_temp)
 
@@ -33,28 +35,15 @@ cardinal<-function(data="template dataframe",
   put_supra<-replace(put_sub,(selectGR+1):length(put_sub),"supra")
   grid_temp$cardinal_labels<-replace(put_supra,selectGR,"both")
 
-  ggplot(grid_temp,aes(x=average,y=GR,colour=cardinal_labels))+
+  summary(lm(data=grid_temp,GR~average,subset=(cardinal_labels=="sub"|cardinal_labels=="both")))
+  summary(lm(data=grid_temp,GR~average,subset=(cardinal_labels=="supra"|cardinal_labels=="both")))
+
+  ggplot(grid_temp,aes(x=average,y=GR))+
     geom_point(size=5)+
-    geom_smooth(method="lm",se=FALSE,fullrange=TRUE, aes(colour=cardinal_labels))
+    stat_function(fun = function(x) 0.006045*x + 0.051165, geom='line',xlim=c(10,29),colour = "#377EB8",linetype = 1,size=1)+
+    stat_function(fun = function(x) -0.010718*x + 0.361416, geom='line',xlim=c(10,29),colour = "#377EB8",linetype = 1,size=1)+
+    scale_y_continuous(limits = c(0,0.3))
 
 }
 
-cardinal(a,1,4)
 
-ssibrary(tidyr)
-library(thermgRad)
-library(dplyr)
-library(tidyverse)
-library(devtools)
-install()
-
-e<-d%>%filter(fluc==0)%>%drop_na()%>%select(grid,GR)
-
-
-which(e$GR,max(e$GR))
-
-tt<-which(e$GR==max(e$GR))
-w<-replace(e$GR,1:tt-1,"sub")
-wc<-replace(w,(tt+1):length(w),"supra")
-wc1<-replace(wc,tt,"both")
-e$wc1<-wc1
