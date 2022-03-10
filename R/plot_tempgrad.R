@@ -23,7 +23,8 @@
 #' @example
 #' plot_tempgrad(0,0,40,40,0,40,0,40,petri=13,toplot = "average")
 #'
-plot_tempgrad<-function(dayBL="Diurnal bottom left temperature",
+plot_tempgrad<-function(x="Template with cumulative germination data",
+                        dayBL="Diurnal bottom left temperature",
                         dayBR="Diurnal bottom right temperature",
                         dayTL="Diurnal top left temperature",
                         dayTR="Diurnal top right temperature",
@@ -35,8 +36,13 @@ plot_tempgrad<-function(dayBL="Diurnal bottom left temperature",
                         method="tbd",
                         adjust="tbd",
                         toplot="show average temperature or temperature fluctuation"){
+
   let<-rep(LETTERS[seq(from=1,to=petri)],each=petri) #vector with as many letters as columns/rows
   grid<-paste0(let,1:petri) #vector with al Petri dish labels
+
+  germin<-((x[ncol(x)-1])/(x[ncol(x)]))*100
+  names(germin)[length(names(germin))]<-"germ"
+
   if (method=="precise"){
     day_bot_row<-seq(dayBL,dayBR,length.out=petri)
     day_top_row<-seq(dayTL,dayTR,length.out=petri)
@@ -52,13 +58,13 @@ plot_tempgrad<-function(dayBL="Diurnal bottom left temperature",
       v_day <- c(v_day, day_temp)
       v_night<-c(v_night,night_temp)
     }
-    temp_grid<-data.frame(PD_ID=grid,day_temp=v_day,night_temp=v_night,average=(v_day+v_night)/2,fluc=round(v_day-v_night,2),abs_fluc=round(abs(v_day-v_night),2))
+    temp_grid<-data.frame(PD_ID=grid,day_temp=v_day,night_temp=v_night,average=(v_day+v_night)/2,fluc=round(v_day-v_night,2),abs_fluc=round(abs(v_day-v_night),2),germ=germin)
     print(temp_grid)
   }
   else{
     day_temp <- rep(seq((dayTL+dayTR)/2,(dayBL+dayBR)/2,length.out=petri),time=petri)
     night_temp <- rep(seq((nightBL+nightTL)/2,(nightBR+nightTR)/2,length.out=petri),each=petri)
-    temp_grid <- data.frame(PD_ID=grid,day_temp=day_temp,night_temp=night_temp,average=(day_temp+night_temp)/2,fluc=round(day_temp-night_temp,2),abs_fluc=round(abs(day_temp-night_temp),2))
+    temp_grid <- data.frame(PD_ID=grid,day_temp=day_temp,night_temp=night_temp,average=(day_temp+night_temp)/2,fluc=round(day_temp-night_temp,2),abs_fluc=round(abs(day_temp-night_temp),2),germ=germin)
     print(temp_grid)
     }
 
@@ -69,6 +75,11 @@ plot_tempgrad<-function(dayBL="Diurnal bottom left temperature",
     z<-(day_temp+night_temp)/2
     label<-round(z,1)
     tit<-"Average temperature"
+  }
+  if (toplot=="germina"){
+    z<-temp_grid$germ
+    label<-round(temp_grid$germ,1)
+    tit<-"Germination %"
   }
   if (toplot=="fluctuation"){
     z<-round(abs(day_temp-night_temp),1)
