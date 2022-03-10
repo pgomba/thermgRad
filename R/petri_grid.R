@@ -25,9 +25,11 @@
 #' @importFrom dplyr mutate
 #' @importFrom utils head
 #' @importFrom utils tail
+#' @importFrom rlang .data
 
 petri_grid<-function(x){
-  germination<-(x)%>%select(ncol(x)-1,ncol(x))%>%mutate(germ=(.[[1]]/.[[2]])*100)%>%select(germ)
+  .=NULL
+  germination<-(x)%>%select(ncol(x)-1,ncol(x))%>%mutate(germ=(.[[1]]/.[[2]])*100)%>%select(.data$germ)
   days<-colnames(x)%>%head(-1)%>%tail(-1)%>%as.numeric()
   germ_list<-(x)%>%select(-1,-ncol(x))%>%as.matrix()
   n<-(x)%>%select(ncol(x))
