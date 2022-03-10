@@ -21,7 +21,7 @@
 #
 #' @importFrom ggplot2 ggplot aes geom_bar geom_segment geom_point theme_dark geom_text scale_fill_distiller labs theme element_text element_blank
 #' @importFrom magrittr %>%
-#' @example
+#' @examples
 #' plot_tempgrad(0,0,40,40,0,40,0,40,petri=13,toplot = "average")
 #'
 plot_tempgrad<-function(x="Template with cumulative germination data",
