@@ -13,7 +13,7 @@
 #' coolbear(seq(1,10,1),c(0,0,0,0,0,6,12,15,18,20),20)
 #'
 #'
-coolbear <- function(day = "vector containing scoring dats",
+coolbear <- function(day = "vector containing scoring dates",
                      cumulative = "vector containing cumulative germination for each day",
                      n ="total number of viable seeds") {
   if (max(cumulative)<n/2){ #If germination is under 50%, is not possible to calculate T50
