@@ -2,6 +2,7 @@
 #'
 #' Similar to tempgrad(), this function outputs a plot representing average temperature or temperature fluctuation for each petri dish
 #'
+#' @param x germination data template
 #' @param dayBL Average diurnal temperature at the bottom left side of the thermal gradient plate
 #' @param dayBR Average diurnal temperature at the bottom left side of the thermal gradient plate
 #' @param dayTL Average diurnal temperature at the bottom left side of the thermal gradient plate

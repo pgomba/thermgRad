@@ -5,6 +5,7 @@
 \title{Plots thermal gradient temperature for each Petri dish}
 \usage{
 plot_tempgrad(
+  x = "Template with cumulative germination data",
   dayBL = "Diurnal bottom left temperature",
   dayBR = "Diurnal bottom right temperature",
   dayTL = "Diurnal top left temperature",
