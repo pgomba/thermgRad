@@ -39,6 +39,6 @@ petri_grid<-function(x){
     GR<-c(GR,1/new_value)
   }
   let<-rep(LETTERS[seq(from=1,to=sqrt(nrow(x)))],each=sqrt(nrow(x))) #vector with as many letters as columns/rows
-  grid<-paste0(let,1:sqrt(nrow(x)))
-  data.frame(grid,germination,t50,GR)
+  PD_ID<-paste0(let,1:sqrt(nrow(x)))
+  data.frame(PD_ID,germination,t50,GR)
 }
