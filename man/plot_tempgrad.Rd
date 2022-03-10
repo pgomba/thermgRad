@@ -53,7 +53,3 @@ A graph with average Petri dish temperature or temperature fluctuation
 \description{
 Similar to tempgrad(), this function outputs a plot representing average temperature or temperature fluctuation for each petri dish
 }
-\examples{
-plot_tempgrad(0,0,40,40,0,40,0,40,petri=13,toplot = "average")
-
-}
