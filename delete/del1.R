@@ -3,7 +3,7 @@ library(ggplot2)
 library(magrittr)
 library(dplyr)
 
-build()
+build_manual(path = getwd())
 
 document()
 
