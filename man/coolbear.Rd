@@ -5,7 +5,7 @@
 \title{Obtain T50 values}
 \usage{
 coolbear(
-  day = "vector containing scoring dats",
+  day = "vector containing scoring dates",
   cumulative = "vector containing cumulative germination for each day",
   n = "total number of viable seeds"
 )
