@@ -22,7 +22,8 @@ Imports:
     readr,
     tidyr,
     tidyverse,
-    methods
+    methods,
+    rlang
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)

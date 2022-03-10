@@ -58,10 +58,10 @@ cardinal<-function(data="template dataframe",
   put_supra<-replace(put_sub,(selectGR+1):length(put_sub),"supra")
   grid_temp$cardinal_labels<-replace(put_supra,selectGR,"both")
 
-  sub_sum<-summary(lm(data=grid_temp,.data$GR~.data$average,subset=(.data$cardinal_labels=="sub"|.data$cardinal_labels=="both")))
+  sub_sum<-summary(lm(data=grid_temp,GR~average,subset=(cardinal_labels=="sub"|cardinal_labels=="both")))
   sub_a<-sub_sum$coefficients[2,1] #ax + b
   sub_b<-sub_sum$coefficients[1,1]
-  supra_sum<-summary(lm(data=grid_temp,.data$GR~.data$average,subset=(.data$cardinal_labels=="supra"|.data$cardinal_labels=="both")))
+  supra_sum<-summary(lm(data=grid_temp,GR~average,subset=(cardinal_labels=="supra"|cardinal_labels=="both")))
   supra_a<-supra_sum$coefficients[2,1] #ax + b
   supra_b<-supra_sum$coefficients[1,1]
 
