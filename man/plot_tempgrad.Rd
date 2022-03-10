@@ -5,25 +5,48 @@
 \title{Plots thermal gradient temperature for each Petri dish}
 \usage{
 plot_tempgrad(
-  x = "output dataframe from tempgrad function",
-  toplot = "tbdescribed"
+  dayBL = "Diurnal bottom left temperature",
+  dayBR = "Diurnal bottom right temperature",
+  dayTL = "Diurnal top left temperature",
+  dayTR = "Diurnal top right temperature",
+  nightBL = "Nocturnal bottom left temperature",
+  nightBR = "Nocturnal bottom right temperature",
+  nightTL = "Nocturnal top left temperature",
+  nightTR = "Nocturnal top right temperature",
+  petri = "Number of petri in a column or row",
+  method = "tbd",
+  adjust = "tbd",
+  toplot = "show average temperature or temperature fluctuation"
 )
 }
 \arguments{
-\item{x}{a dataframe outputted by tempgrad function}
+\item{dayBL}{Average diurnal temperature at the bottom left side of the thermal gradient plate}
 
-\item{toplot}{Decides between plotting average Petri dish temperature (="average) or fluctuation (="fluctuation)}
+\item{dayBR}{Average diurnal temperature at the bottom left side of the thermal gradient plate}
+
+\item{dayTL}{Average diurnal temperature at the bottom left side of the thermal gradient plate}
+
+\item{dayTR}{Average diurnal temperature at the bottom left side of the thermal gradient plate}
+
+\item{nightBL}{Average diurnal temperature at the bottom left side of the thermal gradient plate}
+
+\item{nightBR}{Average diurnal temperature at the bottom left side of the thermal gradient plate}
+
+\item{nightTL}{Average diurnal temperature at the bottom left side of the thermal gradient plate}
+
+\item{nightTR}{Average diurnal temperature at the bottom left side of the thermal gradient plate}
+
+\item{petri}{Number of Petri dishes in a column or a row.}
+
+\item{method}{Leave blank to use average corner temperature values or use "precise" to create a temperature gradient based in individual corner temperatures}
+
+\item{adjust}{tbd, but will be used to center temperature into Petri dish}
+
+\item{toplot}{Decides between plotting average Petri dish temperature (="average") or fluctuation (="fluctuation")}
 }
 \value{
 A graph with average Petri dish temperature or temperature fluctuation
 }
 \description{
-Taking into account thermal gradient plate corner temperatures this function return a graph with the temperatures of each Petri dish. Using the "precise" method returns a more accurate estimated grid of temperatures across the thermal plate, while with the adjust parameter is possible to estimate the temperature at the center of each Petri dish
-}
-\examples{
-x<-tempgrad(dayBL=0,dayBR=0,dayTL=40,dayTR=40,nightBL=0,nightBR=40,nightTL=0,nightTR=40,petri=13)
-plot_tempgrad(x,toplot="average")
-plot_tempgrad(x,toplot="fluctuation")
-x\%>\%plot_tempgrad(toplot="average")
-#'
+Similar to tempgrad(), this function outputs a plot representing average temperature or temperature fluctuation for each petri dish
 }
