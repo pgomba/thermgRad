@@ -12,6 +12,9 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
+```{r, include=FALSE}
+    selectGR <- 6
+```
 
 # thermgRad
 
@@ -86,9 +89,35 @@ data<-thermgRad::tg_example
 thermgRad::plot_results(data, 0,0,40,40,0,40,0,40, petri=13, toplot= "germina")
 ```
 Input `?plot_results` in the R console for a list of parameters. `0,0,40,40,0,40,0,40` refers to corner temperatures. The first four number belong to daytime temperatures (Bottom left, Bottom right, Top left and Top right) followed by nighttime temperatures (again, Bottom left, Bottom right, Top left and Top right). `thermgRad:plot_results` assumes you want to use average temperature between corners (e.g. If during daytime the bottom left corner runs at 5°C, and the bottom right corner runs at 8°C, the function will use 6.5°C). Enabling `method="precise"` within the function creates a more accurate temperature grid. The graph wont look as pretty, but analysis of cardinal temperatures will be more accurate (which is the one that matters).
+
 ```{r, fig.width=6.5,fig.height=6.5}
 data<-thermgRad::tg_example
 thermgRad::plot_results(data, 0,3,40,38,0,38,2,39, petri=13, toplot= "fluctuation",method="precise")
 ```
-If the dataset to create this plot is required, use the function `thermgRad::grid_results`
 
+The dataset supporting this graph can be obtained by using `thermgRad::grid_results`. Again, enabling `method="precise"` will create a gradient using all corner temperatures instead of average temperatures.
+```{r, fig.width=6.5,fig.height=6.5}
+data<-thermgRad::tg_example
+head(thermgRad::grid_results(data, 0,3,40,38,0,38,2,39, petri=13,method="precise"))
+```
+### Obtaining cardinal temperatures
+
+`thermgRad::cardinal` is the main function of package `thermgRad`. As seen before, Petri dishes with similar fluctuation run in parallel to the diagonal line crossing the TGP from left bottom corner to top bottom corner. `thermgRad::cardinal` allows to isolate a range of temperature fluctuation an obtain cardinal temperatures, sub and supra optimal equations and a plot. Fluctuation thershold is inputted via `fs` (lower threshold) and `fs` (upper threshold). In this example we obtain cardinal temperature data for the diagonal, where the temperature fluctuation is 0. 
+```{r,eval=FALSE}
+data<-thermgRad::tg_example
+thermgRad::cardinal(data,0,0,40,40,0,40,0,40, petri=13,fs=0,fe=1)
+```
+
+This outputs a very simple graph representing your GR vs average temperature
+![](images/cardinal_o2.png)
+and table with the data in the graph with a user prompt at the end asking the user to select which PD_ID is to be used for both (sub- and supra-optimal)equations. 
+![](images/cardinal_o1.png)
+For this example we have selected number 7 (highest GR), obtaining the following outputs:  
+```{r}
+# [1] "Suboptimal eq: y = 0.007x - 0.04, R.rsq = 0.963, p-value = 1e-04"
+# [1] "Supraoptimal eq: y = -0.016x - 0.5, R.rsq = 0.957, p-value = 0.022"
+# [1] "Tb = -6 3"
+# [1] "Tc = 31 3"
+# [1] "To = 20.12"
+```
+![](images/cardinal_o3.png)

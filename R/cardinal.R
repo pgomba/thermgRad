@@ -41,7 +41,7 @@ cardinal<-function(data="template dataframe",
                    fs= "lower thershold of fluctuation values",
                    fe= "higher threshold of fluctuation values"){
   grid<-petri_grid(data)
-  temp<-tempgrad(dayBL,dayBR,dayTL,dayTR,nightBL,nightBR,nightTL,nightTR,petri,method,adjust)
+  temp<-grid_results(data,dayBL,dayBR,dayTL,dayTR,nightBL,nightBR,nightTL,nightTR,petri,method,adjust)
   grid_temp<-left_join(grid,temp,by="PD_ID")%>%
     filter(between(.data$fluc,fs,fe))%>%
     drop_na()
