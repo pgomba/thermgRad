@@ -48,7 +48,7 @@ plot_results(
 \item{toplot}{Decides between plotting average Petri dish temperature (="average") or fluctuation (="fluctuation")}
 }
 \value{
-A graph with average Petri dish temperature or temperature fluctuation
+A graph with average Petri dish temperature, temperature fluctuation or germination
 }
 \description{
 Similar to tempgrad(), this function outputs a plot representing average temperature or temperature fluctuation for each petri dish

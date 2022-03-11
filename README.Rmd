@@ -90,5 +90,5 @@ Input `?plot_results` in the R console for a list of parameters. `0,0,40,40,0,40
 data<-thermgRad::tg_example
 thermgRad::plot_results(data, 0,3,40,38,0,38,2,39, petri=13, toplot= "fluctuation",method="precise")
 ```
-
+If the dataset to create this plot is required, use the function `thermgRad::grid_results`
 

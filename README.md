@@ -124,4 +124,6 @@ data<-thermgRad::tg_example
 thermgRad::plot_results(data, 0,3,40,38,0,38,2,39, petri=13, toplot= "fluctuation",method="precise")
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" /> If
+the dataset to create this plot is required, use the function
+`thermgRad::grid_results`
