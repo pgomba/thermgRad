@@ -1,14 +1,22 @@
 ---
-title: "thermgRad"
-version: "0.0.1"
-date: '2022-03-11'
-output: rmarkdown::github_document
+output: github_document
 ---
 
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# thermgRad
+
 <!-- badges: start -->
-
 [![R-CMD-check](https://github.com/pgomba/thermgRad/workflows/R-CMD-check/badge.svg)](https://github.com/pgomba/thermgRad/actions)
-
 <!-- badges: end -->
 
 ## Tools to visualize and analyze germination in temperature gradient plates
@@ -18,6 +26,8 @@ output: rmarkdown::github_document
 `thermgRad` package aims to provide with tools to visualize and analyze germination experiments conducted using a temperature gradient plate (TGP) with a bidirectional setting (day/night cycle) and obtain cardinal temperatures for each of the temperature fluctuations thresholds across the thermal gradient plate.
 
 ## Installation
+
+You can install the development version of thermgRad from [GitHub](https://github.com/) with:
 
 ```{r}
 #install.packages("devtools")
@@ -48,3 +58,4 @@ View(thermgRad::tg_example)
 #or
 head(thermgRad::tg_example)
 ```
+
