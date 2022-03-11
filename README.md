@@ -6,6 +6,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/pgomba/thermgRad/workflows/R-CMD-check/badge.svg)](https://github.com/pgomba/thermgRad/actions)
+
 <!-- badges: end -->
 
 ## Tools to visualize and analyze germination in temperature gradient plates
@@ -40,8 +41,9 @@ the temperature before or after the experiment). But `thermgRad`
 provides the necessary tools to transform corner temperatures to corner
 Petri dish center temperatures (which depends on Petri dish cover
 radio).
-
+<center>
 <img src="images/scheme.png" width="672"/>
+</center>
 
 Germination: `thermgRad` requires, for each Petri dish:
 
@@ -59,21 +61,39 @@ restrictive, but an example to how it should be formatted prior to load
 the data frame can be seen running the following code:
 
 ``` r
-View(thermgRad::tg_example) 
-#or
-head(thermgRad::tg_example)
-#>   DAYS 4 5 6 7  8  9 10 11 12 13 14 15 16 17 18 20 22 24 26 28 30 32 35 38 42
-#> 1   A1 0 0 0 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
-#> 2   A2 0 0 0 0  0  1  1  2  3  3  3  3  3  4  6  6  7  8  9 10 10 11 11 11 11
-#> 3   A3 0 0 0 2  3  6  7  7  9  9  9 11 11 11 11 13 13 14 14 14 14 15 15 15 15
-#> 4   A4 0 0 2 5  7  9  9 10 10 11 11 11 11 11 12 12 12 13 13 13 13 13 13 13 13
-#> 5   A5 0 0 2 5 11 12 13 14 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15
-#> 6   A6 0 0 0 4 11 14 14 14 14 14 15 15 15 15 16 16 16 16 16 16 16 16 16 16 16
-#>   45 48 total
-#> 1  0  0    20
-#> 2 11 14    20
-#> 3 15 15    20
-#> 4 14 14    19
-#> 5 15 16    20
-#> 6 16 16    20
+View(thermgRad::tg_example)
 ```
+
+## Functions
+
+### How is T<sub>50</sub> calculated?
+
+T<sub>50</sub> values are obtained via `thermgRad::coolbear`, a function
+adapting Coolbear et al. (1984) formula modified by Farooq et al.(2005).
+<center>
+
+![
+T\_{50} = T\_{i} + \\frac{(N/2-n\_{i})(t\_{i}-t\_{j})}{n\_{i}-n\_{j}}
+](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%0AT_%7B50%7D%20%3D%20T_%7Bi%7D%20%2B%20%5Cfrac%7B%28N%2F2-n_%7Bi%7D%29%28t_%7Bi%7D-t_%7Bj%7D%29%7D%7Bn_%7Bi%7D-n_%7Bj%7D%7D%0A "
+T_{50} = T_{i} + \frac{(N/2-n_{i})(t_{i}-t_{j})}{n_{i}-n_{j}}
+")
+
+</center>
+
+where N represents the number of sowed seeds (germinated + viable +
+moldy) from a single replicate in all the experiments and n<sub>i</sub>
+and n<sub>j</sub> are the number of seeds germinated adjacently to (N/2)
+at time t<sub>i</sub> and t<sub>j</sub> respectively. An example:
+
+``` r
+scoring_days<-c(seq(1,20,2))
+cumulative_germination<-c(0,0,0,6,7,12,18,23,23,23)
+total_seeds<-25
+
+thermgRad::coolbear(scoring_days,cumulative_germination,total_seeds) #Outputs T50
+#> [1] 11.16667
+```
+
+Among other things, `thermgRad::petri_grid` loops `thermgRad::coolbear`
+all over the template data frame to obtain T<sub>50</sub> values for
+each Petri dish
