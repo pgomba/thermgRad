@@ -161,9 +161,11 @@ thermgRad::cardinal(data,0,0,40,40,0,40,0,40, petri=13,fs=0,fe=1)
 ```
 
 This outputs a very simple graph representing your GR vs average
-temperature ![](images/cardinal_o2.png) and table with the data in the
-graph with a user prompt at the end asking the user to select which
-PD_ID is to be used for both (sub- and supra-optimal)equations.
+temperature:
+
+![](images/cardinal_o2.png) and table with the data in the graph with a
+user prompt at the end asking the user to select which PD_ID is to be
+used for both (sub- and supra-optimal)equations.
 ![](images/cardinal_o1.png) For this example we have selected number 7
 (highest GR), obtaining the following outputs:
 
