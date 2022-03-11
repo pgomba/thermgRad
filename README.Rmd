@@ -81,8 +81,14 @@ Among other things, `thermgRad::petri_grid` loops `thermgRad::coolbear` all over
 ### Visualizing your experiment
 
 `thermgRad::plot_results` collects your experiments results and temperatures and collects them on a Day/Night graph. It´s possible to choose between showing average Petri dish temperature, average temperature fluctuation and germination with parameter `toplot= "average`,`toplot= "fluctuation`or`toplot= "germina"`. 
-```{r}
+```{r, fig.width=6.5,fig.height=6.5}
 data<-thermgRad::tg_example
-plot_results(data, 0,0,40,40,0,40,0,40, petri=13, toplot= "germina")
+thermgRad::plot_results(data, 0,0,40,40,0,40,0,40, petri=13, toplot= "germina")
 ```
+Input `?plot_results` in the R console for a list of parameters. `0,0,40,40,0,40,0,40` refers to corner temperatures. The first four number belong to daytime temperatures (Bottom left, Bottom right, Top left and Top right) followed by nighttime temperatures (again, Bottom left, Bottom right, Top left and Top right). `thermgRad:plot_results` assumes you want to use average temperature between corners (e.g. If during daytime the bottom left corner runs at 5°C, and the bottom right corner runs at 8°C, the function will use 6.5°C). Enabling `method="precise"` within the function creates a more accurate temperature grid. The graph wont look as pretty, but analysis of cardinal temperatures will be more accurate (which is the one that matters).
+```{r, fig.width=6.5,fig.height=6.5}
+data<-thermgRad::tg_example
+thermgRad::plot_results(data, 0,3,40,38,0,38,2,39, petri=13, toplot= "fluctuation",method="precise")
+```
+
 
