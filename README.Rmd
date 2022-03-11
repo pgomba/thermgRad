@@ -77,3 +77,12 @@ total_seeds<-25
 thermgRad::coolbear(scoring_days,cumulative_germination,total_seeds) #Outputs T50
 ```
 Among other things, `thermgRad::petri_grid` loops `thermgRad::coolbear` all over the template data frame to obtain T~50~ values for each Petri dish 
+
+### Visualizing your experiment
+
+`thermgRad::plot_results` collects your experiments results and temperatures and collects them on a Day/Night graph. It´s possible to choose between showing average Petri dish temperature, average temperature fluctuation and germination with parameter `toplot= "average`,`toplot= "fluctuation`or`toplot= "germina"`. 
+```{r}
+data<-thermgRad::tg_example
+plot_results(data, 0,0,40,40,0,40,0,40, petri=13, toplot= "germina")
+```
+

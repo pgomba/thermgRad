@@ -16,13 +16,13 @@
 #' @param adjust tbd, but will be used to center temperature into Petri dish
 #' @param toplot Decides between plotting average Petri dish temperature (="average") or fluctuation (="fluctuation")
 #'
-#' @return A graph with average Petri dish temperature or temperature fluctuation
+#' @return A graph with average Petri dish temperature, temperature fluctuation or germination
 #' @export
 #
 #' @importFrom ggplot2 ggplot aes geom_bar geom_segment geom_point theme_dark geom_text scale_fill_distiller labs theme element_text element_blank
 #' @importFrom magrittr %>%
 #'
-plot_tempgrad<-function(x="Template with cumulative germination data",
+plot_results<-function(x="Template with cumulative germination data",
                         dayBL="Diurnal bottom left temperature",
                         dayBR="Diurnal bottom right temperature",
                         dayTL="Diurnal top left temperature",
