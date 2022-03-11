@@ -112,7 +112,9 @@ This outputs a very simple graph representing your GR vs average temperature:
 
 ![](images/cardinal_o2.PNG)
 and table with the data in the graph with a user prompt at the end asking the user to select which PD_ID is to be used for both (sub- and supra-optimal)equations. 
-![](images/cardinal_o1.PNG
+
+![](images/cardinal_o1.PNG)
+
 For this example we have selected number 7 (highest GR), obtaining the following outputs:  
 ```{r}
 # [1] "Suboptimal eq: y = 0.007x - 0.04, R.rsq = 0.963, p-value = 1e-04"
