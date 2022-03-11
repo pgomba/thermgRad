@@ -71,13 +71,7 @@ View(thermgRad::tg_example)
 T<sub>50</sub> values are obtained via `thermgRad::coolbear`, a function
 adapting Coolbear et al. (1984) formula modified by Farooq et al.(2005).
 <center>
-
-![
-T\_{50} = T\_{i} + \\frac{(N/2-n\_{i})(t\_{i}-t\_{j})}{n\_{i}-n\_{j}}
-](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;%0AT_%7B50%7D%20%3D%20T_%7Bi%7D%20%2B%20%5Cfrac%7B%28N%2F2-n_%7Bi%7D%29%28t_%7Bi%7D-t_%7Bj%7D%29%7D%7Bn_%7Bi%7D-n_%7Bj%7D%7D%0A "
-T_{50} = T_{i} + \frac{(N/2-n_{i})(t_{i}-t_{j})}{n_{i}-n_{j}}
-")
-
+<img src="images/coolbformula.png"/>
 </center>
 
 where N represents the number of sowed seeds (germinated + viable +
