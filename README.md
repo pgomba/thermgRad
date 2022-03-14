@@ -22,7 +22,7 @@ the thermal gradient plate.
 ## Installation
 
 You can install the development version of thermgRad from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/pgomba) with:
 
 ``` r
 #install.packages("devtools")
@@ -181,3 +181,19 @@ following outputs:
 ```
 
 ![](images/cardinal_o3.PNG)
+
+### Disclaimer
+
+`thermgRad` is a hobby project. I only work on this during quiet times,
+when I usually try to improve the code with newly acquired knowledge or
+implement functions that could be useful to interpret the data. Please
+feel free to suggest changes/improvements or raise any existing issues
+via [github](https://github.com/pgomba/thermgRad).
+
+### Next steps
+
+-   Include a method to adjust temperature from corner to Petri dish
+    center (in progress…)
+-   Create references section
+-   Include different methods to calculate cardinal temperatures
+-   Support replicates
