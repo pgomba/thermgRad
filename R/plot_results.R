@@ -13,7 +13,7 @@
 #' @param nightTR Average diurnal temperature at the bottom left side of the thermal gradient plate
 #' @param petri Number of Petri dishes in a column or a row.
 #' @param method Leave blank to use average corner temperature values or use "precise" to create a temperature gradient based in individual corner temperatures
-#' @param adjust tbd, but will be used to center temperature into Petri dish
+#' @param adjust adjust temperature to center of Petri dish
 #' @param toplot Decides between plotting average Petri dish temperature (="average") or fluctuation (="fluctuation")
 #'
 #' @return A graph with average Petri dish temperature, temperature fluctuation or germination
@@ -32,8 +32,8 @@ plot_results<-function(x="Template with cumulative germination data",
                         nightTL="Nocturnal top left temperature",
                         nightTR="Nocturnal top right temperature",
                         petri="Number of petri in a column or row",
-                        method="tbd",
-                        adjust="tbd",
+                        method="average corners temperature or use these independently",
+                        adjust="adjust temperature to center of Petri dish",
                         toplot="show average temperature or temperature fluctuation"){
 
   let<-rep(LETTERS[seq(from=1,to=petri)],each=petri) #vector with as many letters as columns/rows
@@ -70,8 +70,6 @@ plot_results<-function(x="Template with cumulative germination data",
     nTL<-nightTL
     nTR<-nightTR
   }
-
-
 
   germin<-((x[ncol(x)-1])/(x[ncol(x)]))*100
   names(germin)[length(names(germin))]<-"germ"

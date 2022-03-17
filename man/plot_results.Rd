@@ -15,8 +15,8 @@ plot_results(
   nightTL = "Nocturnal top left temperature",
   nightTR = "Nocturnal top right temperature",
   petri = "Number of petri in a column or row",
-  method = "tbd",
-  adjust = "tbd",
+  method = "average corners temperature or use these independently",
+  adjust = "adjust temperature to center of Petri dish",
   toplot = "show average temperature or temperature fluctuation"
 )
 }
@@ -43,7 +43,7 @@ plot_results(
 
 \item{method}{Leave blank to use average corner temperature values or use "precise" to create a temperature gradient based in individual corner temperatures}
 
-\item{adjust}{tbd, but will be used to center temperature into Petri dish}
+\item{adjust}{adjust temperature to center of Petri dish}
 
 \item{toplot}{Decides between plotting average Petri dish temperature (="average") or fluctuation (="fluctuation")}
 }

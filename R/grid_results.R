@@ -35,7 +35,7 @@ grid_results<-function(x="Template with cumulative germination data",
                        nightTR="Nocturnal top right temperature",
                        petri="Number of petri in a column or row",
                        method="average corners temperature or use these independently",
-                       adjust="tbd"){
+                       adjust="adjust temperature to center of Petri dish"){
 
   let<-rep(LETTERS[seq(from=1,to=petri)],each=petri) #vector with as many letters as columns/rows
   grid<-paste0(let,1:petri) #vector with al Petri dish labels
@@ -60,7 +60,8 @@ grid_results<-function(x="Template with cumulative germination data",
   nBR<-nightBR-n_horiz_down+n_verti_right
   nTL<-nightTL+n_horiz_up-n_verti_left
   nTR<-nightTR-n_horiz_up-n_verti_right
-  }else{
+  }else
+    {
   dBL<-dayBL
   dBR<-dayBR
   dTL<-dayTL

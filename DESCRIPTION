@@ -1,6 +1,6 @@
 Package: thermgRad
 Title: Tools for germination analysis on thermal gradient plate
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person("Pablo", "Gomez Barreiro", , "pablogomezbr@hotmail.es", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3140-3326"))
