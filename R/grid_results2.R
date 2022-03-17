@@ -20,10 +20,10 @@
 #'
 #' @examples
 #' data<-tg_example
-#' grid_result(data, 0,3,40,38,0,38,2,39, petri=13)
+#' grid_results(data, 0,3,40,38,0,38,2,39, petri=13)
 #'
 #'
-grid_result<-function(x="Template with cumulative germination data",
+grid_results<-function(x="Template with cumulative germination data",
                        dayBL="Diurnal bottom left temperature",
                        dayBR="Diurnal bottom right temperature",
                        dayTL="Diurnal top left temperature",
