@@ -3,6 +3,7 @@
 export("%>%")
 export(cardinal)
 export(coolbear)
+export(grid_result)
 export(grid_results)
 export(petri_grid)
 export(plot_results)
