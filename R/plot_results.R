@@ -39,14 +39,48 @@ plot_results<-function(x="Template with cumulative germination data",
   let<-rep(LETTERS[seq(from=1,to=petri)],each=petri) #vector with as many letters as columns/rows
   grid<-paste0(let,1:petri) #vector with al Petri dish labels
 
+  if (adjust==TRUE){
+    #day corrections
+    d_horiz_down<-((abs(dayBL-dayBR)/petri)*-sign(dayBL-dayBR))/2
+    d_horiz_up<-((abs(dayTL-dayTR)/petri)*-sign(dayTL-dayTR))/2
+    d_verti_left<-((abs(dayBL-dayTL)/petri)*-sign(dayBL-dayTL))/2
+    d_verti_right<-((abs(dayBR-dayTR)/petri)*-sign(dayBR-dayTR))/2
+    #night corrections
+    n_horiz_down<-((abs(nightBL-nightBR)/petri)*-sign(nightBL-nightBR))/2
+    n_horiz_up<-((abs(nightTL-nightTR)/petri)*-sign(nightTL-nightTR))/2
+    n_verti_left<-((abs(nightBL-nightTL)/petri)*-sign(nightBL-nightTL))/2
+    n_verti_right<-((abs(nightBR-nightTR)/petri)*-sign(nightBR-nightTR))/2
+    #apply day corrections
+    dBL<-dayBL+d_horiz_down+d_verti_left
+    dBR<-dayBR-d_horiz_down+d_verti_right
+    dTL<-dayTL+d_horiz_up-d_verti_left
+    dTR<-dayTR-d_horiz_up-d_verti_right
+    #apply night corrections
+    nBL<-nightBL+n_horiz_down+n_verti_left
+    nBR<-nightBR-n_horiz_down+n_verti_right
+    nTL<-nightTL+n_horiz_up-n_verti_left
+    nTR<-nightTR-n_horiz_up-n_verti_right
+  }else{
+    dBL<-dayBL
+    dBR<-dayBR
+    dTL<-dayTL
+    dTR<-dayTR
+    nBL<-nightBL
+    nBR<-nightBR
+    nTL<-nightTL
+    nTR<-nightTR
+  }
+
+
+
   germin<-((x[ncol(x)-1])/(x[ncol(x)]))*100
   names(germin)[length(names(germin))]<-"germ"
 
   if (method=="precise"){
-    day_bot_row<-seq(dayBL,dayBR,length.out=petri)
-    day_top_row<-seq(dayTL,dayTR,length.out=petri)
-    night_top_row<-seq(nightTL,nightTR,length.out=petri)
-    night_bot_row<-seq(nightBL,nightBR,length.out=petri)
+    day_bot_row<-seq(dBL,dBR,length.out=petri)
+    day_top_row<-seq(dTL,dTR,length.out=petri)
+    night_top_row<-seq(nTL,nTR,length.out=petri)
+    night_bot_row<-seq(nBL,nBR,length.out=petri)
 
     v_day<-vector()
     v_night<-vector()
@@ -61,8 +95,8 @@ plot_results<-function(x="Template with cumulative germination data",
     head(temp_grid) #obsolete print check
   }
   else{
-    day_temp <- rep(seq((dayTL+dayTR)/2,(dayBL+dayBR)/2,length.out=petri),time=petri)
-    night_temp <- rep(seq((nightBL+nightTL)/2,(nightBR+nightTR)/2,length.out=petri),each=petri)
+    day_temp <- rep(seq((dTL+dTR)/2,(dBL+dBR)/2,length.out=petri),time=petri)
+    night_temp <- rep(seq((nBL+nTL)/2,(nBR+nTR)/2,length.out=petri),each=petri)
     temp_grid <- data.frame(PD_ID=grid,day_temp=day_temp,night_temp=night_temp,average=(day_temp+night_temp)/2,fluc=round(day_temp-night_temp,2),abs_fluc=round(abs(day_temp-night_temp),2),germ=germin)
     head(temp_grid) #obsolete print check
     }
