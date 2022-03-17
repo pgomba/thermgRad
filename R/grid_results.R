@@ -2,7 +2,7 @@
 #'
 #' Taking into account thermal gradient plate corner temperatures this function return a data frame with day and night temperatures for each petri dish, their average temperature, the temperature fluctuation or the final germination %. Using the "precise" method returns a more accurate estimate of temperatures across the thermal plate, while with the adjust parameter is possible to estimate the temperature at the center of each Petri dish
 #'
-#' @param x germination data template
+#' @param dat germination data template
 #' @param dayBL Average diurnal temperature at the bottom left side of the thermal gradient plate
 #' @param dayBR Average diurnal temperature at the bottom left side of the thermal gradient plate
 #' @param dayTL Average diurnal temperature at the bottom left side of the thermal gradient plate
@@ -24,7 +24,7 @@
 #' grid_results(data, 0,3,40,38,0,38,2,39, petri=13)
 #'
 #'
-grid_results<-function(x ="Template with cumulative germination data",
+grid_results<-function(dat ="Template with cumulative germination data",
                        dayBL="Diurnal bottom left temperature",
                        dayBR="Diurnal bottom right temperature",
                        dayTL="Diurnal top left temperature",
@@ -72,7 +72,7 @@ grid_results<-function(x ="Template with cumulative germination data",
   nTR<-nightTR
   }
 
-  germin<-((x[ncol(x)-1])/(x[ncol(x)]))*100
+  germin<-((dat[ncol(dat)-1])/(dat[ncol(dat)]))*100
   names(germin)[length(names(germin))]<-"germ"
 
 if (method=="precise"){
