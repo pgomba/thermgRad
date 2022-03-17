@@ -32,33 +32,25 @@ library(thermgRad)
 
 ## What data does the package require?
 
-Temperature: `thermgRad` needs average day and night corner
-temperatures. These are better recorded with an external temperature
-logger, since temperatures on the top side of the plate differ from
-those used in the TGP settings. If possible, I think is better to record
-corner temperatures in the center of each corner Petri dish (either log
-the temperature before or after the experiment). But `thermgRad`
-provides the necessary tools to transform corner temperatures to corner
-Petri dish center temperatures (which depends on Petri dish cover
-radio).
-<center>
-<img src="images/scheme.png" width="672"/>
-</center>
-
-Germination: `thermgRad` requires, for each Petri dish:
-
--   Petri dish ID
-
--   Cumulative germination
-
--   Total number of seeds in the Petri dish (germinated + moldy + viable
-    after cut test)
-
--   Day for each germination record
-
-The data frame format containing all this information is a bit
-restrictive, but an example to how it should be formatted prior to load
-the data frame can be seen running the following code:
+-   Temperature: `thermgRad` needs average day and night corner
+    temperatures. These are better recorded with an external temperature
+    logger, since temperatures on the top side of the plate differ from
+    those used in the TGP settings. If possible, It´s probably better to
+    record temperatures in the center of four Petri dishes closest to
+    the corner (either log the temperature before or after the
+    experiment for a few days). But `thermgRad` provides the necessary
+    tools to transform corner temperatures to corner Petri dish center
+    temperatures.
+    <center>
+    <img src="images/scheme.png" width="672"/>
+    </center>
+-   Germination: `thermgRad` requires, for each Petri dish an ID,
+    cumulative germination and day such germination was reached and
+    total number of seeds in the Petri dish (germinated + moldy + viable
+    after cut test) The data frame format containing all this
+    information is a bit restrictive, but an example to how it should be
+    formatted prior to load the data frame can be seen running the
+    following code:
 
 ``` r
 View(thermgRad::tg_example)
@@ -106,6 +98,7 @@ thermgRad::plot_results(data, 0,0,40,40,0,40,0,40, petri=13, toplot= "germina")
 ```
 
 <img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
+
 Input `?plot_results` in the R console for a list of parameters.
 `0,0,40,40,0,40,0,40` refers to corner temperatures. The first four
 number belong to daytime temperatures (Bottom left, Bottom right, Top
@@ -126,6 +119,17 @@ thermgRad::plot_results(data, 0,3,40,38,0,38,2,39, petri=13, toplot= "fluctuatio
 
 <img src="man/figures/README-unnamed-chunk-7-1.png" width="100%" />
 
+If temperature was recorded in the corners of the TGP and need to be
+adjusted to the center of each Petri use `"adjust==TRUE"`. Can be
+combined with `"method==precise"`
+
+``` r
+data<-thermgRad::tg_example
+thermgRad::plot_results(data, 0,3,40,38,0,38,2,39, petri=13, toplot= "average",method="precise",adjust=TRUE)
+```
+
+<img src="man/figures/README-unnamed-chunk-8-1.png" width="100%" />
+
 The dataset supporting this graph can be obtained by using
 `thermgRad::grid_results`. Again, enabling `method="precise"` will
 create a gradient using all corner temperatures instead of average
@@ -133,7 +137,7 @@ temperatures.
 
 ``` r
 data<-thermgRad::tg_example
-head(thermgRad::grid_results(data, 0,3,40,38,0,38,2,39, petri=13,method="precise"))
+head(thermgRad::grid_results(data, 0,3,40,38,0,38,2,39, petri=13,method="precise",adjust=TRUE))
 #>   PD_ID day_temp night_temp average  fluc abs_fluc     germ
 #> 1    A1 40.00000   2.000000   21.00 38.00    38.00  0.00000
 #> 2    A2 36.66667   1.833333   19.25 34.83    34.83 70.00000
@@ -190,10 +194,11 @@ implement functions that could be useful to interpret the data. Please
 feel free to suggest changes/improvements or raise any existing issues
 via [github](https://github.com/pgomba/thermgRad).
 
-### Next steps
+### Roadmap
 
 -   Include a method to adjust temperature from corner to Petri dish
-    center (in progress…)
--   Create references section
--   Include different methods to calculate cardinal temperatures
--   Support replicates
+    center ✔️
+-   Create references section ❌ (March 22)
+-   Include different methods to calculate cardinal temperatures ❌
+-   Support replicates ❌
+-   Shiny app

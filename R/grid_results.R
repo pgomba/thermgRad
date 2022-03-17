@@ -37,11 +37,9 @@ grid_results<-function(x="Template with cumulative germination data",
                        method="average corners temperature or use these independently",
                        adjust="tbd"){
 
-let<-rep(LETTERS[seq(from=1,to=petri)],each=petri) #vector with as many letters as columns/rows
-grid<-paste0(let,1:petri) #vector with al Petri dish labels
-
-
-if (adjust==TRUE){
+  let<-rep(LETTERS[seq(from=1,to=petri)],each=petri) #vector with as many letters as columns/rows
+  grid<-paste0(let,1:petri) #vector with al Petri dish labels
+  if (adjust==TRUE){
   #day corrections
   d_horiz_down<-((abs(dayBL-dayBR)/petri)*-sign(dayBL-dayBR))/2
   d_horiz_up<-((abs(dayTL-dayTR)/petri)*-sign(dayTL-dayTR))/2
@@ -73,8 +71,8 @@ if (adjust==TRUE){
   nTR<-nightTR
   }
 
-germin<-((x[ncol(x)-1])/(x[ncol(x)]))*100
-names(germin)[length(names(germin))]<-"germ"
+  germin<-((x[ncol(x)-1])/(x[ncol(x)]))*100
+  names(germin)[length(names(germin))]<-"germ"
 
 if (method=="precise"){
   day_bot_row<-seq(dBL,dBR,length.out=petri)
