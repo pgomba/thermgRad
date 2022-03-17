@@ -58,6 +58,8 @@ grid_results(
 \item{method}{Leave blank to use average corner temperature values or use "precise" to create a temperature gradient based in individual corner temperatures}
 
 \item{adjust}{tbd, but will be used to center temperature into Petri dish}
+
+\item{dat}{germination data template}
 }
 \value{
 A data frame with day and night temperatures, average temperature and temperature fluctuation for each Petri dish
