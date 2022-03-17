@@ -20,7 +20,7 @@
 #'
 #' @examples
 #' data<-tg_example
-#' grid_results(data, 0,3,40,38,0,38,2,39, petri=13)
+#' grid_result(data, 0,3,40,38,0,38,2,39, petri=13)
 #'
 #'
 grid_result<-function(x="Template with cumulative germination data",
