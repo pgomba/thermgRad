@@ -20,7 +20,6 @@
 #' @export
 #
 #' @importFrom ggplot2 ggplot aes geom_bar geom_segment geom_point theme_dark geom_text scale_fill_distiller labs theme element_text element_blank
-#' @importFrom magrittr %>%
 #'
 plot_results<-function(x="Template with cumulative germination data",
                         dayBL="Diurnal bottom left temperature",
@@ -71,8 +70,8 @@ plot_results<-function(x="Template with cumulative germination data",
     nTR<-nightTR
   }
 
-  germin<-((x[ncol(x)-1])/(x[ncol(x)]))*100
-  names(germin)[length(names(germin))]<-"germ"
+germin<-((x[ncol(x)-1])/(x[ncol(x)]))*100
+names(germin)[length(names(germin))]<-"germ"
 
   if (method=="precise"){
     day_bot_row<-seq(dBL,dBR,length.out=petri)
