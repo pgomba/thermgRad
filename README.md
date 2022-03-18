@@ -6,6 +6,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/pgomba/thermgRad/workflows/R-CMD-check/badge.svg)](https://github.com/pgomba/thermgRad/actions)
+[![codecov](https://codecov.io/gh/pgomba/thermgRad/branch/main/graph/badge.svg?token=AHBAK9ZC0Q)](https://codecov.io/gh/pgomba/thermgRad)
 
 <!-- badges: end -->
 
