@@ -21,6 +21,11 @@
 #
 #' @importFrom ggplot2 ggplot aes geom_bar geom_segment geom_point theme_dark geom_text scale_fill_distiller labs theme element_text element_blank
 #'
+#' @examples
+#' data<-tg_example
+#' plot_results(data,0,1,39,40,1,39,3,38,petri=13,method="precise",adjust=TRUE,toplot = "nighttemp")
+#' plot_results(data,5,8,39,40,1,39,3,38,petri=13,adjust=TRUE,toplot = "fluctuation")
+#'
 plot_results<-function(x="Template with cumulative germination data",
                         dayBL="Diurnal bottom left temperature",
                         dayBR="Diurnal bottom right temperature",
