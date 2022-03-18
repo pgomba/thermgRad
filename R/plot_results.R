@@ -116,6 +116,16 @@ names(germin)[length(names(germin))]<-"germ"
     label<-round(z,1)
     tit<-"Temperature fluctuation"
   }
+  if (toplot=="daytemp"){
+    z<-round(day_temp)
+    label<-round(z,1)
+    tit<-"Day temperatures"
+  }
+  if (toplot=="nighttemp"){
+    z<-round(night_temp)
+    label<-round(z,1)
+    tit<-"Night temperatures"
+  }
   res<-ggplot2::ggplot(temp_grid,aes(night_temp,day_temp,z=z,label=label))+
     geom_segment(x=0,xend=40,y=0,yend=40,size=2,linetype="dashed")+
     geom_point(aes(fill=z),size=12,shape=21,stroke=1.1)+
