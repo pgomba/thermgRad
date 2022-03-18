@@ -29,11 +29,11 @@ knitr::opts_chunk$set(
 
 ![](images/head_title.png)
 
-`thermgRad` package aims to provide with tools to visualize and analyze germination experiments conducted using a temperature gradient plate (TGP) with a bidirectional setting (day/night cycle) and obtain cardinal temperatures for each of the temperature fluctuations thresholds across the thermal gradient plate.
+`thermgRad` package aims to provide with useful tools to visualize and analyze germination experiments conducted using a temperature gradient plate (TGP) with a bidirectional setting (day/night cycle) and obtain cardinal temperatures for each of the temperature fluctuations thresholds across the thermal gradient plate.
 
 ## Installation
 
-You can install the development version of thermgRad from [GitHub](https://github.com/pgomba) with:
+You can install the development version of `thermgRad` from [GitHub](https://github.com/pgomba) with:
 
 ```{r}
 #install.packages("devtools")
@@ -43,8 +43,8 @@ library(thermgRad)
 
 ## What data does the package require?
 
-- Temperature: `thermgRad` needs average day and night corner temperatures. These are better recorded with an external temperature logger, since temperatures on the top side of the plate differ from those used in the TGP settings. If possible, It´s probably better to record temperatures in the center of four Petri dishes closest to the corner (either log the temperature before or after the experiment for a few days). But `thermgRad` provides the necessary tools to transform corner temperatures to corner Petri dish center temperatures.
-<center> <img src="images/scheme.png" width="672"/> </center> 
+- Temperature: `thermgRad` needs average day and night corner temperatures. These are best recorded at the center of the nearest to each corner Petri dish (either log temperature for a few days before or after the experiment), but `thermgRad` provides with the neccesary tools to adjust temperature registered at each corner of the TGP to center of Petri dish temperature. Avoid using TGP setting temperatures as corner temperatures, since these can differ from the temperatures recorded on top of the metal plate.  
+
 - Germination: `thermgRad` requires, for each Petri dish an ID, cumulative germination and day such germination was reached and total number of seeds in the Petri dish (germinated + moldy + viable after cut test)
 The data frame format containing all this information is a bit restrictive, but an example to how it should be formatted prior to load the data frame can be seen running the following code:
 
@@ -68,34 +68,42 @@ total_seeds<-25
 thermgRad::coolbear(scoring_days,cumulative_germination,total_seeds) #Outputs T50
 ```
 
-Among other things, `thermgRad::petri_grid` loops `thermgRad::coolbear` all over the template data frame to obtain T~50~ values for each Petri dish
+`thermgRad::coolbear` can be used as a standalone function or looped through a data frame, which is what `thermgRad::petri_grid` does, outputting individual information for each Petri dish (label, final germination %, T~50~ and germination rate). `thermgRad::petri_grid` is one of the core sub-functions of `thermgRad::cardinal`, but I'll get to that later [(or jump to it now!)](#obtaining-cardinal-temperatures).
+
+```{r}
+data<-thermgRad::tg_example
+head(petri_grid(data))
+```
+
 
 ### Visualizing your experiment
 
-`thermgRad::plot_results` collects your experiments results and temperatures and collects them on a Day/Night graph. It´s possible to choose between showing average Petri dish temperature, average temperature fluctuation and germination with parameter `toplot= "average`,`toplot= "fluctuation`or`toplot= "germina"`.
+`thermgRad::plot_results` collects your experiments results and temperatures and collects them on a Day/Night temperature graph. The basic inputs this function needs are: 
+- a formatted data frame like `thermgRad::tg_example
+- number of Petri dishes per column/row
+- Corner temperatures following this order (Day Bottom Left, Day Bottom Right, Day Top Left, Day Top Right, Night Bottom left, Night Bottom Right, Night Top Left and Night Top Right) e.g:`0,0,40,40,0,40,0,40`
+- Desired output via the parameter`toplot`, which allows to choose between several options. Use `="daytemp"`,`="nighttemp"` or `="average"` to show day, night or average temperature, respectively. Additionally, use `="fluctuation"` to show the temperature fluctuation of each dish or `="germina"` to show final germination %.
 
 ```{r, fig.width=6.5,fig.height=6.5}
 data<-thermgRad::tg_example
 thermgRad::plot_results(data, 0,0,40,40,0,40,0,40, petri=13, toplot= "germina")
 ```
 
-Input `?plot_results` in the R console for a list of parameters. `0,0,40,40,0,40,0,40` refers to corner temperatures. The first four number belong to daytime temperatures (Bottom left, Bottom right, Top left and Top right) followed by nighttime temperatures (again, Bottom left, Bottom right, Top left and Top right). `thermgRad:plot_results` assumes you want to use average temperature between corners (e.g. If during daytime the bottom left corner runs at 5°C, and the bottom right corner runs at 8°C, the function will use 6.5°C). Enabling `method="precise"` within the function creates a more accurate temperature grid. The graph wont look as pretty, but analysis of cardinal temperatures will be more accurate (which is the one that matters).
+By default, `thermgRad:plot_results` uses average temperature between "equal" temperature corners (i.e. If the bottom left corner is at 0°C and the bottom right corner is at 2°C, it will assume the whole bottom row is at 1°C). However, using `method="precise"` will create a temperature gradient based in individual corner temperatures and will likely give each Petri dish an individual temperature. The output plot does not look as straight and good as one without using the method (remember the grid is not a visual representation of the TGP, but a day vs night temperature plot) but the temperature grid will be more accurate
 
 ```{r, fig.width=6.5,fig.height=6.5}
 data<-thermgRad::tg_example
-thermgRad::plot_results(data, 0,3,40,38,0,38,2,39, petri=13, toplot= "fluctuation",method="precise")
+thermgRad::plot_results(data, 0,3,40,38,0,38,2,39, petri=13, toplot= "daytemp",method="precise")
 ```
-
-If temperature was recorded in the corners of the TGP and need to be adjusted to the center of each Petri use `"adjust==TRUE"`. Can be combined with `"method==precise"`
-
+There is yet another possible adjustment to do. If temperatures were recorded in each of the TGP corners, this can be adjusted to the center of each Petri dish for more accurate analysis. By adding the parameter `adjust=TRUE`
+<center> <img src="images/scheme.png" width="400"/> </center>
 
 ```{r, fig.width=6.5,fig.height=6.5}
 data<-thermgRad::tg_example
-thermgRad::plot_results(data, 0,3,40,38,0,38,2,39, petri=13, toplot= "average",method="precise",adjust=TRUE)
+thermgRad::plot_results(data, 0,3,40,38,0,38,2,39, petri=13, toplot= "daytemp",method="precise",adjust=TRUE)
 ```
 
-
-The dataset supporting this graph can be obtained by using `thermgRad::grid_results`. Again, enabling `method="precise"` will create a gradient using all corner temperatures instead of average temperatures.
+To obtain the dataset used to create the graph use the function `thermgRad::grid_results` which uses the same parameters from `thermgRad::plot_results` without`toplot`.
 
 ```{r, fig.width=6.5,fig.height=6.5}
 data<-thermgRad::tg_example
