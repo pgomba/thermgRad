@@ -210,8 +210,8 @@ via [github](https://github.com/pgomba/thermgRad).
 ### Roadmap
 
 -   Include a method to adjust temperature from corner to Petri dish
-    center ✔️
--   Create references section ❌ (March 22)
+    center ✔️ (March 22)
+-   Create references section ❌
 -   Include different methods to calculate cardinal temperatures ❌
 -   Support replicates ❌
 -   Shiny app

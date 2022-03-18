@@ -143,8 +143,8 @@ For this example we have selected number 7 (highest GR), obtaining the following
 
 ### Roadmap
 
-- Include a method to adjust temperature from corner to Petri dish center `r emo::ji("heavy_check_mark")`
-- Create references section `r emo::ji("x")` (March 22)
+- Include a method to adjust temperature from corner to Petri dish center `r emo::ji("heavy_check_mark")` (March 22)
+- Create references section `r emo::ji("x")` 
 - Include different methods to calculate cardinal temperatures `r emo::ji("x")`
 - Support replicates `r emo::ji("x")`
 - Shiny app
