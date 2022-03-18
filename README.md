@@ -102,8 +102,15 @@ head(petri_grid(data))
 `thermgRad::plot_results` collects your experiments results and
 temperatures and collects them on a Day/Night temperature graph. The
 basic inputs this function needs are: - a formatted data frame like
-`thermgRad::tg_example - number of Petri dishes per column/row - Corner temperatures following this order (Day Bottom Left, Day Bottom Right, Day Top Left, Day Top Right, Night Bottom left, Night Bottom Right, Night Top Left and Night Top Right) e.g:`0,0,40,40,0,40,0,40`- Desired output via the parameter`toplot`, which allows to choose between several options. Use`=“daytemp”`,`=“nighttemp”`or`=“average”`to show day, night or average temperature, respectively. Additionally, use`=“fluctuation”`to show the temperature fluctuation of each dish or`=“germina”\`
-to show final germination %.
+`thermgRad::tg_example` - number of Petri dishes per column/row - Corner
+temperatures following this order (Day Bottom Left, Day Bottom Right,
+Day Top Left, Day Top Right, Night Bottom left, Night Bottom Right,
+Night Top Left and Night Top Right) e.g:`0,0,40,40,0,40,0,40` - Desired
+output via the parameter`toplot`, which allows to choose between several
+options. Use `="daytemp"`,`="nighttemp"` or `="average"` to show day,
+night or average temperature, respectively. Additionally, use
+`="fluctuation"` to show the temperature fluctuation of each dish or
+`="germina"` to show final germination %.
 
 ``` r
 data<-thermgRad::tg_example
