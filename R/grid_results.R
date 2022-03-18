@@ -2,7 +2,7 @@
 #'
 #' Taking into account thermal gradient plate corner temperatures this function return a data frame with day and night temperatures for each petri dish, their average temperature, the temperature fluctuation or the final germination %. Using the "precise" method returns a more accurate estimate of temperatures across the thermal plate, while with the adjust parameter is possible to estimate the temperature at the center of each Petri dish
 #'
-#' @param dat germination data template
+#' @param x germination data template
 #' @param dayBL Average diurnal temperature at the bottom left side of the thermal gradient plate
 #' @param dayBR Average diurnal temperature at the bottom left side of the thermal gradient plate
 #' @param dayTL Average diurnal temperature at the bottom left side of the thermal gradient plate
@@ -24,7 +24,7 @@
 #' grid_results(data, 0,3,40,38,0,38,2,39, petri=13)
 #'
 #'
-grid_results<-function(dat ="Template with cumulative germination data",
+grid_results<-function(x ="Template with cumulative germination data",
                        dayBL="Diurnal bottom left temperature",
                        dayBR="Diurnal bottom right temperature",
                        dayTL="Diurnal top left temperature",
@@ -36,10 +36,45 @@ grid_results<-function(dat ="Template with cumulative germination data",
                        petri="Number of petri in a column or row",
                        method="average corners temperature or use these independently",
                        adjust="adjust temperature to center of Petri dish"){
-data<-tg_example
 
-  germin<-((dat[ncol(dat)-1])/(dat[ncol(dat)]))*100
+  let<-rep(LETTERS[seq(from=1,to=petri)],each=petri) #vector with as many letters as columns/rows
+  grid<-paste0(let,1:petri) #vector with al Petri dish labels
+
+  if (adjust==TRUE){
+    #day corrections
+    d_horiz_down<-((abs(dayBL-dayBR)/petri)*-sign(dayBL-dayBR))/2
+    d_horiz_up<-((abs(dayTL-dayTR)/petri)*-sign(dayTL-dayTR))/2
+    d_verti_left<-((abs(dayBL-dayTL)/petri)*-sign(dayBL-dayTL))/2
+    d_verti_right<-((abs(dayBR-dayTR)/petri)*-sign(dayBR-dayTR))/2
+    #night corrections
+    n_horiz_down<-((abs(nightBL-nightBR)/petri)*-sign(nightBL-nightBR))/2
+    n_horiz_up<-((abs(nightTL-nightTR)/petri)*-sign(nightTL-nightTR))/2
+    n_verti_left<-((abs(nightBL-nightTL)/petri)*-sign(nightBL-nightTL))/2
+    n_verti_right<-((abs(nightBR-nightTR)/petri)*-sign(nightBR-nightTR))/2
+    #apply day corrections
+    dBL<-dayBL+d_horiz_down+d_verti_left
+    dBR<-dayBR-d_horiz_down+d_verti_right
+    dTL<-dayTL+d_horiz_up-d_verti_left
+    dTR<-dayTR-d_horiz_up-d_verti_right
+    #apply night corrections
+    nBL<-nightBL+n_horiz_down+n_verti_left
+    nBR<-nightBR-n_horiz_down+n_verti_right
+    nTL<-nightTL+n_horiz_up-n_verti_left
+    nTR<-nightTR-n_horiz_up-n_verti_right
+  }else{
+    dBL<-dayBL
+    dBR<-dayBR
+    dTL<-dayTL
+    dTR<-dayTR
+    nBL<-nightBL
+    nBR<-nightBR
+    nTL<-nightTL
+    nTR<-nightTR
+  }
+
+  germin<-((x[ncol(x)-1])/(x[ncol(x)]))*100
   names(germin)[length(names(germin))]<-"germ"
+
 
 if (method=="precise"){
   day_bot_row<-seq(dBL,dBR,length.out=petri)
