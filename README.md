@@ -10,7 +10,7 @@
 
 <!-- badges: end -->
 
-## Tools to visualize and analyze germination in temperature gradient plates
+## Tools to Visualize and Analyze Germination in Temperature Gradient Plates
 
 ![](images/head_title.png)
 
