@@ -1,7 +1,5 @@
 data<-thermgRad::tg_example
 
-#test
-
 test_that("plot_results works", {
   plot<-plot_results(data,3,6,40,38,4,39,7,40,petri=13,method = "precise",toplot="average")
   expect_equal(plot$data$fluc[5], 21.67)
@@ -14,4 +12,5 @@ test_that("plot_results works", {
   plot3<-plot_results(data,3,6,40,38,4,39,7,40,petri=13,method = "precise",adjust=TRUE,toplot="germina")
   expect_equal(plot3$data$PD_ID[28], "C2")
   expect_equal(plot3$labels$title, "Germination %")
+
 })
