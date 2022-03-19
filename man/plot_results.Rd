@@ -53,3 +53,9 @@ A graph with average Petri dish temperature, temperature fluctuation or germinat
 \description{
 Similar to tempgrad(), this function outputs a plot representing average temperature or temperature fluctuation for each petri dish
 }
+\examples{
+data<-tg_example
+plot_results(data,0,1,39,40,1,39,3,38,petri=13,method="precise",adjust=TRUE,toplot = "nighttemp")
+plot_results(data,5,8,39,40,1,39,3,38,petri=13,adjust=TRUE,toplot = "fluctuation")
+
+}
