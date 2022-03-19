@@ -4,7 +4,7 @@ Version: 0.0.1
 Authors@R: 
     person("Pablo", "Gomez Barreiro", , "pablogomezbr@hotmail.es", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3140-3326"))
-Description: thermgRad package aims to provide with useful tools to visualize and analyze germination experiments conducted using a temperature gradient plate (TGP) with a bidirectional setting (day/night cycle) and obtain cardinal temperatures for each of the temperature fluctuations thresholds across the thermal gradient plate.
+Description: Provides with tools to visualize and analyze germination experiments conducted using a temperature gradient plate (TGP) with a bidirectional setting (day/night cycle) and obtain cardinal temperatures for each of the temperature fluctuations thresholds across the thermal gradient plate.
 License: GPL (>= 3) + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
