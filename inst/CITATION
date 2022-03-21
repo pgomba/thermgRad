@@ -1,0 +1,16 @@
+citHeader("To cite thermgRad in publications use:")
+
+citEntry(
+  entry    = "Package",
+  title    = "ThermgRad: Tools to Visualize and Analyze Germination in Temperature Gradient Plates",
+  author   = "Gómez Barreiro, P",
+  journal  = ,
+  year     = ,
+  volume   = ,
+  number   = ,
+  pages    = ,
+  url      = ,
+  textVersion = paste(
+
+  )
+)
