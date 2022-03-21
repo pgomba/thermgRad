@@ -138,6 +138,11 @@ For this example we have selected number 7 (highest GR), obtaining the following
 
 ![](images/cardinal_o3.PNG)
 
+### References
+
+Fernández-Pascual, E., Seal, C. E., & Pritchard, H. W. (2015). Simulating the germination response to diurnally alternating temperatures under climate change scenarios: comparative studies on *Carex diandra* seeds. Annals of Botany, 115(2), 201-209.
+
+
 ### Disclaimer
 
 `thermgRad` is a hobby project. I only work on this during quiet times, when I usually try to improve the code with newly acquired knowledge or implement functions that could be useful to interpret the data. Please feel free to suggest changes/improvements or raise any existing issues via [github](https://github.com/pgomba/thermgRad).
@@ -145,7 +150,6 @@ For this example we have selected number 7 (highest GR), obtaining the following
 ### Roadmap
 
 - Include a method to adjust temperature from corner to Petri dish center `r emo::ji("heavy_check_mark")` (March 22)
-- Create references section `r emo::ji("x")` 
 - Include different methods to calculate cardinal temperatures `r emo::ji("x")`
 - Support replicates `r emo::ji("x")`
 - Shiny app

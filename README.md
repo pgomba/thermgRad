@@ -207,6 +207,13 @@ following outputs:
 
 ![](images/cardinal_o3.PNG)
 
+### References
+
+Fernández-Pascual, E., Seal, C. E., & Pritchard, H. W. (2015).
+Simulating the germination response to diurnally alternating
+temperatures under climate change scenarios: comparative studies on
+*Carex diandra* seeds. Annals of Botany, 115(2), 201-209.
+
 ### Disclaimer
 
 `thermgRad` is a hobby project. I only work on this during quiet times,
@@ -219,7 +226,6 @@ via [github](https://github.com/pgomba/thermgRad).
 
 -   Include a method to adjust temperature from corner to Petri dish
     center ✔️ (March 22)
--   Create references section ❌
 -   Include different methods to calculate cardinal temperatures ❌
 -   Support replicates ❌
 -   Shiny app
