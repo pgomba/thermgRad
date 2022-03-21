@@ -13,4 +13,11 @@ test_that("plot_results works", {
   expect_equal(plot3$data$PD_ID[28], "C2")
   expect_equal(plot3$labels$title, "Germination %")
 
+  plot4<-plot_results(data,3,6,40,38,4,39,7,40,petri=13,toplot="daytemp")
+  expect_equal(plot4$data$PD_ID[40], "D1")
+  expect_equal(plot4$labels$title, "Day temperatures")
+
+  plot5<-plot_results(data,3,6,40,38,4,39,7,40,petri=13,toplot="nighttemp")
+  expect_equal(plot5$labels$title, "Night temperatures")
+
 })

@@ -51,8 +51,11 @@ cardinal<-function(data="template dataframe",
   show(ggplot(grid_temp,aes(x=.data$average,y=.data$GR))+
     geom_point(size=5))
 
-
-  selectGR <- as.numeric(readline(prompt="Enter common temperature PD_ID number: "))
+  if (getOption('thermgRad.test_mode', FALSE)){
+    selectGR <-7
+  }else{
+    selectGR <- as.numeric(readline(prompt="Enter common temperature PD_ID number: "))
+    }
 
   put_sub<-replace(grid_temp$GR,1:selectGR-1,"sub")
   put_supra<-replace(put_sub,(selectGR+1):length(put_sub),"supra")
@@ -90,5 +93,4 @@ cardinal<-function(data="template dataframe",
   print(paste("To =",round(inter,3)))
 
 }
-
 
