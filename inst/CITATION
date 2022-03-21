@@ -3,7 +3,7 @@ citHeader("To cite thermgRad in publications use:")
 citEntry(
   entry    = "Package",
   title    = "ThermgRad: Tools to Visualize and Analyze Germination in Temperature Gradient Plates",
-  author   = "Gómez Barreiro, P",
-  textVersion = paste(Gómez Barreiro, P. ThermgRad: Tools to Visualize and Analyze Germination in Temperature Gradient Plates
+  author   = "Gomez Barreiro, P",
+  textVersion = paste(Gomez Barreiro, P. ThermgRad: Tools to Visualize and Analyze Germination in Temperature Gradient Plates
   )
 )
