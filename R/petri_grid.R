@@ -20,21 +20,33 @@
 #' | M12      | 0 | 0 | 0 | 1 | 1 | 5 | 8 | 20 | 20 |
 #' | M13      | 0 | 0 | 0 | 1 | 5 | 10 | 10 | 15 | 21 |
 #' @md
-#' @importFrom magrittr %>%
-#' @importFrom dplyr select
-#' @importFrom dplyr mutate
-#' @importFrom utils head
-#' @importFrom utils tail
+#' @importFrom dplyr select mutate cur_data
+#' @importFrom utils head tail
 #' @importFrom rlang .data
 
 petri_grid<-function(x){
   .=NULL
-  germination<-(x)%>%select(ncol(x)-1,ncol(x))%>%mutate(germ=(.[[1]]/.[[2]])*100)%>%select(.data$germ)
-  days<-colnames(x)%>%head(-1)%>%tail(-1)%>%as.numeric()
-  germ_list<-(x)%>%select(-1,-ncol(x))%>%as.matrix()
-  n<-(x)%>%select(ncol(x))
+  germination<-(x)|>
+    select(ncol(x)-1,ncol(x))|>
+    mutate(germ=(cur_data()[[1]]/cur_data()[[2]])*100)|>
+    select(.data$germ)
+
+  days<-colnames(x)|>
+    head(-1)|>
+    tail(-1)|>
+    as.numeric()
+
+  germ_list<-(x)|>
+    select(-1,-ncol(x))|>
+    as.matrix()
+
+  n<-(x)|>
+    select(ncol(x))
+
   t50<-vector()
+
   GR<-vector()
+
   for (i in 1:nrow(germ_list)) {
     new_value<-coolbear(days,as.vector(germ_list[i,]),n[[i,1]])
     t50 <- c(t50, new_value)
