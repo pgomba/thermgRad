@@ -17,7 +17,6 @@ Config/testthat/edition: 3
 Imports: 
     utils,
     dplyr,
-    magrittr,
     ggplot2,
     tidyr,
     methods,

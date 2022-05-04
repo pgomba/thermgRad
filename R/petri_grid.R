@@ -20,21 +20,20 @@
 #' | M12      | 0 | 0 | 0 | 1 | 1 | 5 | 8 | 20 | 20 |
 #' | M13      | 0 | 0 | 0 | 1 | 5 | 10 | 10 | 15 | 21 |
 #' @md
-#' @importFrom dplyr select
-#' @importFrom dplyr mutate
-#' @importFrom utils head
-#' @importFrom utils tail
+#' @importFrom dplyr select mutate cur_data
+#' @importFrom utils head tail
 #' @importFrom rlang .data
 
 petri_grid<-function(x){
   .=NULL
   germination<-(x)|>
     select(ncol(x)-1,ncol(x))|>
-    mutate(germ=.[[1]]/.[[2]]*100)|>
+    mutate(germ=(cur_data()[[1]]/cur_data()[[2]])*100)|>
     select(.data$germ)
 
   days<-colnames(x)|>
-    head(-1)|>tail(-1)|>
+    head(-1)|>
+    tail(-1)|>
     as.numeric()
 
   germ_list<-(x)|>
