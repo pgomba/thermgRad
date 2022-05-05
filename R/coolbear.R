@@ -28,6 +28,10 @@ coolbear <- function(day = "vector containing scoring dates",
     t50<-day[min(which(cumulative==n/2))]
     return(t50)
   }
+  if (cumulative[[1]]>n/2){ #If the first cumulative germination is already bigger than n/2, T50 is (0+first counting day)/2
+    t50<-(0+day[[1]])/2
+    return(t50)
+  }
   else{
     ni<-cumulative[sum(cumulative<=n/2)]
     nj<-cumulative[sum(cumulative<=n/2)+1]
